@@ -1,0 +1,108 @@
+<!--
+   piword.html
+   
+   Copyright 2018 álex bueno <francisco.manuel.alexander@gmail.com>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Piword</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.32" />
+    <script type="text/javascript" src="piword.js"></script>
+    <script type="text/javascript" src="d3.v3.js"></script>
+    <script type="text/javascript" src="web3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="piword.css">
+</head>
+
+<body>
+    <header></header>
+    <section >
+		<main>
+			<p>
+				Hola.¿Qué tal estamos? Pues yo aquí que he aprendido un poco del tema este de las cryptomonedas, 
+				en concreto de ethereum y sus smarts contract. ¿Qué es todo esto?. Una movida tó loca jaja. Para no liaros mucho
+				viene a ser un sistema donde se pueden hacer transacciones y contratos. - Ah, bueno, eso ya está inventado desde hace mucho.-
+				Sí, pero en este caso la gracia es que se pueden programar de forma automática y no dependen de que tengas que ir a 
+				un notario, este te lo certifique. Ethereum está diseñado para que sus contratos sean programables, verificables por cualquiera
+				y sobre todo programables. Es decir, puedes diseñar un contrato que si alguien te paga una cantidad automáticamente te envie algo por correo.
+				Te lo cuento por encima, si quieres saber más hay buena información en la red, como por ejemplo aquí en 
+				<a href="https://www.xataka.com/criptomonedas/ethereum-el-nuevo-bitcoin-es-algo-mas-que-una-criptomoneda">Xataka</a>. 
+			</p>
+			<p>
+				Y es que ese contrato que desarrolles puede ser cualquier cosa. Así que a mi que me gusta las matemáticas y la lingüistica, 
+				¿Qué podría hacer? Pues juntarlo todo a ver que pasa. Ah!, también se me olvidaba que voy a alojar esta web en 
+				<a href="https://blog.iqoption.com/es/el-sistema-de-archivos-interplanetario-ipfs/" >ipfs</a> 
+			</p>
+			<p>
+				Cómo iba diciendo, voy a mezclar churras y merinas, matemáticas y lenguaje. Por si no lo sabeis hace tiempo junto a Daniel Manzano publicamos 
+				el siguiente trabajo. https://arxiv.org/abs/1404.1844
+				
+			</p>
+		</main>
+        <section>
+            <label for="text_input" >Pon algo de texto</label>
+            <p></p>
+            <textarea id="text_input" name="text_input"></textarea>
+            <p></p>
+            <label for="precission_number" >Precisión de los puntos, por ejemplo 6 es 0.000001</label>
+            <p></p>
+            <input type="number" min=0 id="precission_number" name="precission_number" value=6></input>
+            <p></p>
+            <button onclick="getPI('text_input','precission_number')">Get PI!!!</button>
+        </section>
+        <section>
+			<div id="buttons_smart_contract" name="buttons_smart_contract">
+				<select id="adreess_contract" name="adreess_contract" onchange="smartContract()">
+				  <option value="">Elige una red</option>
+				  <option value="">Etherum</option>
+				  <option value='0xf50bd598287293a840570fb89484dfca37f099d1'>Rinkeby</option>
+				</select>
+				<button id="button_add_datas_smart_contract" name="button_add_datas_smart_contract">Añadir tus datos  a la red</button>
+				<button id="button_get_datas_smart_contract" name="button_get_datas_smart_contract">Recoger datos de la red</button>
+			</div>
+        </section>
+        <section>
+			<div id='plot_coordinates' name='plot_coordinates'>
+              <!-- /the chart goes here -->
+            </div>
+        </section>
+        <section>
+			<div id='datas' name='datas'>
+              <div id='datos_dentro' name='datos_dentro'>
+				<span >Puntos dentro: </span><span id='datos_dentro_value' name='datos_dentro_value'>0</span>
+              </div>
+              <div id='datos_total' name='datos_total'>
+				<span >Puntos totales: </span><span id='datos_total_value' name='datos_total_value'>0</span>
+              </div>
+            </div>
+            
+            <div id='plot_pi' name='plot_pi'>
+              <!-- /the chart goes here -->
+            </div>
+        </section>
+    </section>
+	
+</body>
+
+</html>
