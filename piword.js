@@ -81,10 +81,14 @@ function getPI(nameField,precissionNumberField){
     let coordinates=sliceInt(int_text,precission_number);
     console.log("coordinates",coordinates);
     let pi=calculatePI(countInside(coordinates),coordinates.x.length);
-    console.log("pi",pi);
-    putValues(countInside(coordinates),coordinates.x.length);
-    barChart(pi,Math.PI);
-    scatterChart (coordinates);
+    if (coordinates.x.length>=1){
+		console.log("pi",pi);
+		putValues(countInside(coordinates),coordinates.x.length);
+		barChart(pi,Math.PI);
+		scatterChart (coordinates);
+	}else{
+		alert ("Necesitas generar más puntos, al menos 1, tienes "+coordinates.x.length +" puntos")
+	}
 }
 function putValues(datos_dentro,datos_total){
 	//put values in datas div
@@ -258,10 +262,9 @@ function barChart(value_stimate,value_theorical){
 
 function smartContract(){
 	//let web3 = new Web3();
-	if (document.getElementById("adreess_contract").value!==""){
+	if (document.getElementById("adreess_contract").value!=="" && document.getElementById("adreess_contract").value!=="empty" ){
 		  let web3 = window.web3;
 			// Check if Web3 has been injected by the browser:
-		  console.log("address",);
 		  if (typeof web3 !== 'undefined') {
 			// You have a web3 browser! Continue below!
 			//let  provider = web3.currentProvider;
@@ -330,6 +333,7 @@ function smartContract(){
 			
 			let pi_c = pi_contract.at(document.getElementById("adreess_contract").value);
 			console.log(pi_c);
+			document.getElementById("button_get_datas_smart_contract").style.display="block";
 			document.getElementById("button_get_datas_smart_contract").addEventListener("click", function(){
 				pi_c.pi(function(error, result){
 						if(!error)
@@ -339,26 +343,36 @@ function smartContract(){
 								putValues(result[0],result[1]);
 								barChart(pi,Math.PI);
 							}
-						else
+						else{
+							 
 							console.error(error);
+						}
 					});
 				
 			});
+			document.getElementById("button_add_datas_smart_contract").style.display="block";
 			document.getElementById("button_add_datas_smart_contract").addEventListener("click", function(){
 				let datos_dentro_value=parseInt(document.getElementById('datos_dentro_value').innerHTML);
 				let datos_total_value=parseInt(document.getElementById('datos_total_value').innerHTML);
-				pi_c.addPoint(datos_total_value,datos_dentro_value, {
-										gas: 300000,
-										from: web3.eth.accounts[0],
-										value: web3.toWei(0, 'ether')
-									 }, (err, result) => {
-										 if (!err){
-											console.log(result);
-										}else{
-											console.log("error",err);
-										}
-									 });
-			
+				try {
+					pi_c.addPoint(datos_total_value,datos_dentro_value, {
+											gas: 300000,
+											from: web3.eth.accounts[0],
+											value: web3.toWei(0, 'ether')
+										 }, (err, result) => {
+											 
+											 if (!err){
+												console.log(result);
+											}else{
+												console.log("error",err);
+											}
+										 });
+				 }catch (e){
+					 console.log(e);
+					 alert('Por favor activa y logueate en el complemento de metamask y asegurate de tener ethers en tu cuenta  ');
+												
+				 }
+				
 				
 			});
 		  } else {
@@ -366,10 +380,18 @@ function smartContract(){
 			 // Or install MetaMask, maybe with a nice graphic.
 			 alert('Por favor activa y logueate en el complemento de metamask ');
 		  }
+	} else if (document.getElementById("adreess_contract").value=="empty") {
+			 // Warn the user that they need to get a web3 browser
+			 // Or install MetaMask, maybe with a nice graphic.
+			 
+			 alert('Por favor activa y logueate en el complemento de metamask ');
 	}
 }
+
 window.addEventListener('load', function() {
+	
 	smartContract();
 
 })
+
 
