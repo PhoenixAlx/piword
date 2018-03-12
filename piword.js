@@ -384,7 +384,7 @@ function smartContract(){
 			 // Warn the user that they need to get a web3 browser
 			 // Or install MetaMask, maybe with a nice graphic.
 			 
-			 alert('Por favor activa y logueate en el complemento de metamask ');
+			 alert('El contrato aún no está disponible en esta red');
 	}
 }
 
