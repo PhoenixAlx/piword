@@ -387,10 +387,115 @@ function smartContract(){
 			 alert('El contrato aún no está disponible en esta red');
 	}
 }
+function animationText(text){
+	//let split = new SplitText(text);
+	console.log("text",text.childNodes);
+	let new_divs=[];
+	let nodes=text.childNodes;
+	for (let n=0;n<nodes.length;n++){
+		let textnode =nodes[n];
+		console.log("n",n);
+		console.log("text",text.childNodes);
+		console.log("textnode",textnode);
+		let text_comp=textnode.wholeText;
+		console.log("textnode.nodeName",textnode.nodeName);
+		if (textnode.nodeName!="DIV" && textnode.nodeName!="BR" && textnode.nodeName!="A"){
+			let text_comp_array=text_comp.split();
+			console.log("text_comp_array",text_comp_array);
+			
+			for (let i=0;i<text_comp.length;i++){
+				let character=text_comp[i];
+				let type_element="div";
+				if (character==" "){
+					character="\u00A0";
+				}else if (character=="\n"){
+					type_element="br";
+				}
+				//let replacementNode = textnode.splitText(1);
+
+				// creating a span with ' span contents '
+				let new_div = document.createElement(type_element);
+				new_div.appendChild(document.createTextNode(character));
+
+				// adding the span before 'bar'
+				text.insertBefore(new_div, textnode);
+				
+				//let test=text.splitText(3);
+				new_divs.push(new_div);
+				
+				
+			}
+			text.removeChild(textnode);
+		}
+	}
+	function random(min, max){
+			return (Math.random() * (max - min)) + min;
+	}
+	$(new_divs).each(function(i){
+					TweenMax.from($(this), 2.5, {
+						
+						opacity: 0,
+						x: random(-500, 500),
+						y: random(-500, 500),
+						z: random(-500, 500),
+						scale: .1,
+						delay: i * .02,
+						yoyo: true,
+						repeat: 0,
+						repeatDelay: 0
+						});
+				});		
+
+}
+
+function changeText(div){
+	document.getElementById('div_p1').style.display="none";
+	document.getElementById('div_p2').style.display="none";
+	document.getElementById('div_p3').style.display="none";
+	document.getElementById('div_p4').style.display="none";
+	document.getElementById('div_p5').style.display="none";
+	document.getElementById('div_p6').style.display="none";
+	document.getElementById('div_p7').style.display="none";
+	document.getElementById('section_main').style.display="none";
+	if (div!=='section_main'){
+		document.getElementById(div).style.display="block";
+		let p=div.split("_")[1];
+		let text = document.getElementById(p);
+		animationText(text);
+	}else{
+		document.getElementById('button_p1_back').style.display="none";
+		document.getElementById('button_p2_back').style.display="none";
+		document.getElementById('button_p3_back').style.display="none";
+		document.getElementById('button_p4_back').style.display="none";
+		document.getElementById('button_p5_back').style.display="none";
+		document.getElementById('button_p6_back').style.display="none";
+		document.getElementById('button_p7_back').style.display="none";
+		
+		document.getElementById('button_p1_next').style.display="none";
+		document.getElementById('button_p2_next').style.display="none";
+		document.getElementById('button_p3_next').style.display="none";
+		document.getElementById('button_p4_next').style.display="none";
+		document.getElementById('button_p5_next').style.display="none";
+		document.getElementById('button_p6_next').style.display="none";
+		document.getElementById('button_p7_next').style.display="none";
+		
+		document.getElementById('div_p1').style.display="block";
+		document.getElementById('div_p2').style.display="block";
+		document.getElementById('div_p3').style.display="block";
+		document.getElementById('div_p4').style.display="block";
+		document.getElementById('div_p5').style.display="block";
+		document.getElementById('div_p6').style.display="block";
+		document.getElementById('div_p7').style.display="block";
+		document.getElementById('section_main').style.display="block";
+	}
+		
+	
+}
 
 window.addEventListener('load', function() {
 	
 	smartContract();
+	changeText('div_p1');
 
 })
 

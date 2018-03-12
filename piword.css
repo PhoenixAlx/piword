@@ -21,3 +21,23 @@ circle {
 			width: 400px;
 			border: 0px solid black;
 }
+.buttons_Arrow{
+	font-size: 300%;
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    
+    
+}
+.div_ps{
+	display:none;
+
+}
+.div_ps div{
+	display:inline-block;
+	position:relative;
+}
+
