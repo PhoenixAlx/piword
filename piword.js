@@ -73,7 +73,7 @@ function getPI(nameField,precissionNumberField){
     //get inputs an get aproximation of pi
     let text=document.getElementById(nameField).value;
     let precission_number=parseInt(document.getElementById(precissionNumberField).value);
-    if (Math.round(precission_number)===precission_number && precission_number>0){
+    if (document.getElementById(precissionNumberField).value.indexOf(",")<0 && document.getElementById(precissionNumberField).value.indexOf(".")<0 && precission_number>0){
 		console.log ("text",text);
 		let b=convertByte(text);
 		console.log("byte",b);
