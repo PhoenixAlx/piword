@@ -5,7 +5,7 @@
    
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version  of the License, or
+   the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
    
    This program is distributed in the hope that it will be useful,
@@ -73,21 +73,25 @@ function getPI(nameField,precissionNumberField){
     //get inputs an get aproximation of pi
     let text=document.getElementById(nameField).value;
     let precission_number=parseInt(document.getElementById(precissionNumberField).value);
-    console.log ("text",text);
-    let b=convertByte(text);
-    console.log("byte",b);
-    let int_text=b.join("");
-    console.log ("int_text",int_text);
-    let coordinates=sliceInt(int_text,precission_number);
-    console.log("coordinates",coordinates);
-    let pi=calculatePI(countInside(coordinates),coordinates.x.length);
-    if (coordinates.x.length>=1){
-		console.log("pi",pi);
-		putValues(countInside(coordinates),coordinates.x.length);
-		barChart(pi,Math.PI);
-		scatterChart (coordinates);
+    if (Math.round(precission_number)===precission_number && precission_number>1){
+		console.log ("text",text);
+		let b=convertByte(text);
+		console.log("byte",b);
+		let int_text=b.join("");
+		console.log ("int_text",int_text);
+		let coordinates=sliceInt(int_text,precission_number);
+		console.log("coordinates",coordinates);
+		let pi=calculatePI(countInside(coordinates),coordinates.x.length);
+		if (coordinates.x.length>=1){
+			console.log("pi",pi);
+			putValues(countInside(coordinates),coordinates.x.length);
+			barChart(pi,Math.PI);
+			scatterChart (coordinates);
+		}else{
+			alert ("Necesitas generar más puntos, al menos 1, tienes "+coordinates.x.length +" puntos");
+		}
 	}else{
-		alert ("Necesitas generar más puntos, al menos 1, tienes "+coordinates.x.length +" puntos")
+		alert ("Por favor, introduce sólo números enteros y positivos mayores que 1 en 'Número de decimales de los puntos'");
 	}
 }
 function putValues(datos_dentro,datos_total){

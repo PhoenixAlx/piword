@@ -5,7 +5,7 @@
    
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 3 of the License, or
+   the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
    
    This program is distributed in the hope that it will be useful,
@@ -29,11 +29,11 @@
 	<title>Piword</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="generator" content="Geany 1.32" />
-    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+
     <script type="text/javascript" src="d3.v3.js"></script>
     <script type="text/javascript" src="web3.min.js"></script>
     <script type="text/javascript" src="piword.js"></script>
-
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="TweenMax.min.js"></script>
     
     <link rel="stylesheet" type="text/css" href="piword.css">
@@ -129,9 +129,9 @@
 				<p></p>
 				<textarea id="text_input" name="text_input"></textarea>
 				<p></p>
-				<label for="precission_number" >Precisión de los puntos, por ejemplo 6 es 0.000001</label>
+				<label for="precission_number" >Número de decimales de los puntos, por ejemplo 6 es 0.000001</label>
 				<p></p>
-				<input type="number" min=0 id="precission_number" name="precission_number" value=6></input>
+				<input type="number" min="1" step="1" id="precission_number" name="precission_number" value=6></input>
 				<p></p>
 				<button onclick="getPI('text_input','precission_number')">Get PI!!!</button>
 			</section>
