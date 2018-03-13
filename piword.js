@@ -443,7 +443,7 @@ function animationText(text){
 						y: random(-500, 500),
 						z: random(-500, 500),
 						scale: .1,
-						delay: i * .0002,
+						delay: i * .02,
 						yoyo: true,
 						repeat: 0,
 						repeatDelay: 0
