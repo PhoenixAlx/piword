@@ -40,4 +40,6 @@ circle {
 	display:inline-block;
 	position:relative;
 }
-
+#section_main{
+  display:none;
+}
