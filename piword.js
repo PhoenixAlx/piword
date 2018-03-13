@@ -73,7 +73,7 @@ function getPI(nameField,precissionNumberField){
     //get inputs an get aproximation of pi
     let text=document.getElementById(nameField).value;
     let precission_number=parseInt(document.getElementById(precissionNumberField).value);
-    if (Math.round(precission_number)===precission_number && precission_number>1){
+    if (Math.round(precission_number)===precission_number && precission_number>0){
 		console.log ("text",text);
 		let b=convertByte(text);
 		console.log("byte",b);
@@ -91,7 +91,7 @@ function getPI(nameField,precissionNumberField){
 			alert ("Necesitas generar más puntos, al menos 1, tienes "+coordinates.x.length +" puntos");
 		}
 	}else{
-		alert ("Por favor, introduce sólo números enteros y positivos mayores que 1 en 'Número de decimales de los puntos'");
+		alert ("Por favor, introduce sólo números enteros y positivos mayores o iguales que 1 en 'Número de decimales de los puntos'");
 	}
 }
 function putValues(datos_dentro,datos_total){
